@@ -1,73 +1,104 @@
-# 🎓 Campus Share
+# 📚 Campus Share
 
-A modern marketplace for college students to rent, lend, and discover useful items within their campus community.
+**Share. Borrow. Save.**
 
-Campus Share makes it simple for students to share resources such as books, electronics, sports equipment, calculators, and other essentials instead of purchasing everything individually.
+A modern campus marketplace where students can securely rent and borrow items from one another. Built with React, Firebase, and Vite, Campus Share helps reduce costs and encourages resource sharing within a college community.
+
+🌐 **Live Demo:** https://campus-share-beta.vercel.app
 
 ---
 
-## ✨ Features
+## 🚀 Features
 
 - 🔐 Google Authentication using Firebase
-- 📦 Add new item listings
-- 🔍 Search listings by title
-- 🏷 Filter items by category
-- 📄 Detailed item information page
-- 👤 Owner information
-- 📋 Copy owner email & phone number
-- 💬 Contact owner through WhatsApp
-- 🗑 Owner-only listing deletion
-- 📂 My Listings dashboard
-- 📱 Fully responsive interface
+- 📦 Browse available listings
+- 🔍 Search items by name
+- 🏷️ Filter items by category
+- ➕ Add new listings
+- 📄 View detailed item information
+- 👤 My Listings page
+- 🗑️ Delete your own listings
+- 📱 Fully responsive design
+- ☁️ Cloud database using Firestore
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| React | Frontend Framework |
-| Vite | Build Tool |
-| Tailwind CSS | Styling |
-| Firebase Authentication | User Authentication |
-| Cloud Firestore | Database |
-| React Router | Navigation |
+### Frontend
+- React (Vite)
+- JavaScript
+- Tailwind CSS
+- React Router DOM
+
+### Backend & Cloud
+- Firebase Authentication
+- Firebase Firestore
+- Firebase Storage
+
+### Deployment
+- Vercel
 
 ---
 
 ## 📸 Screenshots
 
-> Screenshots will be added soon.
+> Add screenshots here after capturing them.
 
-- Login Page
-- Home Page
-- Add Listing
-- Item Details
-- My Listings
+### Login
+
+![Login](screenshots/login.png)
+
+### Home
+
+![Home](screenshots/home.png)
+
+### Item Details
+
+![Item Details](screenshots/item-details.png)
+
+### Add Listing
+
+![Add Listing](screenshots/add-listing.png)
+
+### My Listings
+
+![My Listings](screenshots/my-listings.png)
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Installation
 
-### Clone the repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/maanvimal/campus-share.git
 ```
 
-### Navigate into the project
+Go into the project:
 
 ```bash
 cd campus-share
 ```
 
-### Install dependencies
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-### Start the development server
+Create a `.env` file in the project root:
+
+```env
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_SENDER_ID
+VITE_FIREBASE_APP_ID=YOUR_APP_ID
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -75,46 +106,53 @@ npm run dev
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
 src/
-│
 ├── components/
-├── pages/
 ├── firebase/
+├── pages/
 ├── services/
-├── assets/
-│
 ├── App.jsx
 └── main.jsx
 ```
 
 ---
 
-## 🔮 Future Improvements
+## 🎯 Future Improvements
 
-- Edit Listings
+- In-app chat between students
 - Wishlist / Favorites
-- In-app Chat
-- Ratings & Reviews
-- Rental Booking Dates
+- Booking requests
+- Availability calendar
+- User ratings & reviews
+- College email verification
+- Image optimization
 - Notifications
-- Multiple Images per Listing
-- Payment Integration
-- Firestore query optimization
 
 ---
 
-## 👨‍💻 Author
+## 👥 Team
 
-**Maan Vimal**
+**Maan Vimal**  
+- Project Planning
+- Frontend Development
+- Firebase Integration
+- Deployment
 
-GitHub:
-https://github.com/maanvimal
+**Mahima Prajapati**  
+- Team Member
+- Development & Testing
 
 ---
 
 ## 📜 License
 
-This project is created for learning, portfolio, and educational purposes.
+This project was developed for educational purposes as part of a college project.
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
