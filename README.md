@@ -1,38 +1,28 @@
-# Campus Share 🎓
+# 🎓 Campus Share
 
-A modern campus rental marketplace that enables students to list, discover, and rent items within their college community.
+A modern campus rental marketplace that enables students to rent and share items within their college community.
 
-Built with **React**, **Firebase**, **Cloudinary**, and **Tailwind CSS**, Campus Share provides a simple and responsive platform for sharing resources among students.
-
----
-
-## 🌐 Live Demo
-
-> Add your Vercel deployment link here
-
-Example:
-
-https://your-project.vercel.app
+Campus Share helps students list books, electronics, sports equipment, and everyday essentials for short-term rentals, making campus resource sharing simple, affordable, and convenient.
 
 ---
 
-## ✨ Features
+## 🚀 Live Demo
 
-- ✅ Google Authentication
-- ✅ Add Item Listings
-- ✅ Cloudinary Image Upload
-- ✅ Image Preview Before Upload
-- ✅ Browse Available Items
-- ✅ Search Listings
-- ✅ Category Filtering
-- ✅ My Listings Dashboard
-- ✅ Delete Listings
-- ✅ Confirmation Modal
-- ✅ Toast Notifications
-- ✅ Skeleton Loading
-- ✅ Responsive Design
+🌐 https://campus-share-beta.vercel.app
 
 ---
+
+## ✨ Highlights
+
+- Secure Google Authentication
+- Modern responsive interface
+- Fast search and category filtering
+- Cloudinary image uploads
+- Personal dashboard for managing listings
+- Toast notifications
+- Skeleton loading
+- Confirmation dialogs
+- Mobile-friendly design
 
 ## 🛠 Tech Stack
 
@@ -50,19 +40,6 @@ https://your-project.vercel.app
 ---
 
 ## 📷 Screenshots
-
-Add screenshots inside a folder named `screenshots`.
-
-```
-screenshots/
-├── login.png
-├── home.png
-├── add-listing.png
-├── my-listings.png
-└── item-details.png
-```
-
-Then display them here.
 
 ### Login
 
@@ -91,8 +68,6 @@ Then display them here.
 ### Item Details
 
 ![Item Details](screenshots/item-details.png)
-
----
 
 ## 📂 Project Structure
 
