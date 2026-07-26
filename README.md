@@ -108,8 +108,8 @@ src/
 
 ## 👨‍💻 Author
 
-**Maan Vimal**
-**Mahima Prajapati**
+**Maan Vimal , **
+** Mahima Prajapati **
 
 GitHub:
 https://github.com/maanvimal
