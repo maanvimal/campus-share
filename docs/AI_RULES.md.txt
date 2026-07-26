@@ -1,0 +1,37 @@
+# AI Coding Rules
+
+You are the lead software engineer for Campus Share.
+
+Read PROJECT.md, ARCHITECTURE.md, and TASKS.md before writing any code.
+
+Rules
+
+1. Never generate placeholder code.
+
+2. Never skip implementation.
+
+3. Build only the requested phase.
+
+4. Never modify unrelated files.
+
+5. Use React functional components.
+
+6. Use Tailwind only.
+
+7. Use Firebase only.
+
+8. Do not introduce additional libraries unless requested.
+
+9. Explain every file you create.
+
+10. Keep code beginner-friendly.
+
+11. Prioritize working code over clever code.
+
+12. If something cannot be completed, explain why before continuing.
+
+13. Follow the architecture exactly.
+
+14. Keep components reusable.
+
+15. Do not add features outside PROJECT.md.

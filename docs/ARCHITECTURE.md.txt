@@ -1,0 +1,164 @@
+# Architecture
+
+## Folder Structure
+
+src/
+
+components/
+
+pages/
+
+firebase/
+
+hooks/
+
+services/
+
+utils/
+
+assets/
+
+App.jsx
+
+main.jsx
+
+---
+
+# Pages
+
+/Login
+
+Authentication
+
+/Home
+
+Browse Listings
+
+/Add
+
+Add Listing Form
+
+/Item/:id
+
+Listing Details
+
+---
+
+# Components
+
+Navbar
+
+Footer
+
+SearchBar
+
+ItemCard
+
+ListingForm
+
+ProtectedRoute
+
+LoadingSpinner
+
+---
+
+# Firebase
+
+Authentication
+
+Google Sign In
+
+Firestore
+
+Collection
+
+listings
+
+Document
+
+{
+itemName,
+description,
+rentPerDay,
+category,
+hostel,
+contactNumber,
+imageUrl,
+ownerUid,
+ownerName,
+createdAt
+}
+
+Storage
+
+listing-images/
+
+---
+
+# Routing
+
+/
+
+→ Redirect
+
+/login
+
+/home
+
+/add
+
+/item/:id
+
+---
+
+# State Management
+
+React Hooks
+
+useState
+
+useEffect
+
+No Redux
+
+No Context unless absolutely necessary.
+
+---
+
+# UI Rules
+
+Tailwind Only
+
+No Bootstrap
+
+No Material UI
+
+Reusable Components
+
+Keep components under ~150 lines where practical.
+
+---
+
+# Error Handling
+
+Image Upload Failure
+
+Firestore Failure
+
+Authentication Failure
+
+Show simple alerts or toast messages.
+
+---
+
+# Security
+
+Firestore rules
+
+Authenticated users can create listings.
+
+Anyone authenticated can read listings.
+
+Only owner can delete/update.
+
+No advanced permissions.

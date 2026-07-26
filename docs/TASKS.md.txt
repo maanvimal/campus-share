@@ -1,0 +1,118 @@
+# AI Development Tasks
+
+The AI must complete tasks in order.
+
+Never skip tasks.
+
+Do not build future tasks early.
+
+---
+
+## Phase 1
+
+Project Setup
+
+- Install Tailwind
+- Configure Firebase
+- Create folder structure
+- Configure Router
+- Create empty pages
+- Create Navbar
+- Create Footer
+
+Done when
+
+Application starts successfully.
+
+---
+
+## Phase 2
+
+Authentication
+
+- Google Login
+- Logout
+- Protected Routes
+
+Done when
+
+User reaches Home after login.
+
+---
+
+## Phase 3
+
+Browse Listings
+
+- Firestore Connection
+- Fetch Listings
+- Responsive Grid
+- Item Card
+
+Done when
+
+Listings appear.
+
+---
+
+## Phase 4
+
+Add Listing
+
+Form
+
+Upload Image
+
+Save Firestore
+
+Validation
+
+Done when
+
+Listing appears on Home.
+
+---
+
+## Phase 5
+
+Search
+
+Search Bar
+
+Realtime Filtering
+
+Done when
+
+Typing filters listings.
+
+---
+
+## Phase 6
+
+Item Details
+
+Show Complete Information
+
+WhatsApp Button
+
+Call Button
+
+Done when
+
+User can contact owner.
+
+---
+
+## Phase 7
+
+Deployment
+
+Firebase Hosting
+
+GitHub
+
+README
+
+Done when
+
+Website is live.

@@ -1,0 +1,132 @@
+# CAMPUS SHARE
+
+## Overview
+
+Campus Share is a college project.
+
+Students can rent useful items from other students inside the same college or hostel.
+
+The objective is to create a clean, functional MVP within one day.
+
+This is NOT intended to be a production startup.
+
+---
+
+# Objectives
+
+Build a working website that demonstrates
+
+- Authentication
+- CRUD
+- Firebase
+- File Upload
+- Search
+- Responsive UI
+
+while keeping implementation simple.
+
+---
+
+# Target Users
+
+College Students
+
+Examples
+
+- Need a calculator before exam
+- Need a lab coat
+- Need a cricket bat
+- Need a cycle
+- Need an extension board
+- Need a speaker
+
+---
+
+# Tech Stack
+
+Frontend
+
+- React
+- Vite
+- JavaScript
+- Tailwind CSS
+
+Backend
+
+- Firebase Authentication
+- Firestore
+- Firebase Storage
+
+Deployment
+
+- Firebase Hosting
+
+---
+
+# Scope
+
+Must Have
+
+✔ Login
+
+✔ Browse Listings
+
+✔ Add Listing
+
+✔ Search
+
+✔ Item Details
+
+✔ Contact Owner
+
+Do NOT Build
+
+❌ Payments
+
+❌ Chat
+
+❌ Ratings
+
+❌ Notifications
+
+❌ Admin Panel
+
+❌ Recommendation System
+
+❌ Maps
+
+❌ AI
+
+---
+
+# Design
+
+Minimal
+
+Modern
+
+Blue + White
+
+Rounded Cards
+
+Responsive
+
+---
+
+# Success Criteria
+
+A working deployed website.
+
+Students can
+
+Login
+
+Browse
+
+Search
+
+Add Item
+
+Open WhatsApp / Call Owner
+
+within one day.
