@@ -82,64 +82,87 @@ function ItemDetails() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+    <div className="min-h-screen bg-slate-50 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      <div className="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.18)] sm:p-6 lg:p-8">
         <button
           type="button"
           onClick={() => navigate('/home')}
-          className="mb-6 rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
         >
-          ← Back
+          <span aria-hidden="true">←</span>
+          Back
         </button>
 
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-100">
             {listing.imageUrl ? (
-              <img src={listing.imageUrl} alt={listing.name} className="h-80 w-full object-cover" />
+              <img src={listing.imageUrl} alt={listing.name} className="h-[22rem] w-full object-cover sm:h-[28rem]" />
             ) : (
-              <div className="flex h-80 items-center justify-center text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <div className="flex h-[22rem] items-center justify-center text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 sm:h-[28rem]">
                 No Image
               </div>
             )}
           </div>
 
-          <div className="space-y-5">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Item Details</p>
-              <h1 className="mt-2 text-3xl font-bold text-slate-900">{listing.name}</h1>
-              <p className="mt-3 text-slate-600">{listing.description}</p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-sm text-slate-500">Category</p>
-                <p className="mt-1 font-semibold text-slate-900">{listing.category}</p>
+          <div className="space-y-4">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-blue-700">
+                  Item Details
+                </span>
+                <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                  ● Available
+                </span>
               </div>
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-sm text-slate-500">Rent Per Day</p>
-                <p className="mt-1 font-semibold text-slate-900">{listing.rentPerDay}</p>
+
+              <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+                {listing.name}
+              </h1>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
+                  {listing.category}
+                </span>
+              </div>
+
+              <div className="mt-5 rounded-[1.25rem] border border-blue-100 bg-blue-50/70 p-4">
+                <p className="text-sm font-medium text-blue-700">Rent per day</p>
+                <p className="mt-1 text-2xl font-semibold text-slate-900">₹{listing.rentPerDay}</p>
+              </div>
+
+              <div className="mt-5">
+                <h2 className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Description</h2>
+                <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
+                  {listing.description}
+                </p>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 p-4">
-              <p className="text-sm text-slate-500">Contact Number</p>
-              <p className="mt-1 text-lg font-semibold text-slate-900">{listing.contactNumber}</p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 p-4">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Owner Information</p>
-              <div className="mt-3 space-y-2">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 shadow-sm">
+              <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-sm text-slate-500">Owner Name</p>
-                  <p className="font-semibold text-slate-900">{listing.ownerName || 'User'}</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Contact</p>
+                  <p className="mt-1 text-lg font-semibold text-slate-900">{listing.contactNumber}</p>
                 </div>
-                <div>
-                  <p className="text-sm text-slate-500">Owner Email</p>
-                  <p className="font-semibold text-slate-900">{listing.ownerEmail || 'Not available'}</p>
+                <div className="rounded-full bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm">
+                  Quick contact
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Owner information</p>
+              <div className="mt-4 space-y-3">
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Owner name</p>
+                  <p className="mt-1 font-semibold text-slate-900">{listing.ownerName || 'User'}</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Owner email</p>
+                  <p className="mt-1 font-semibold text-slate-900">{listing.ownerEmail || 'Not available'}</p>
                 </div>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-wrap gap-2.5">
                 <button
                   type="button"
                   onClick={() => handleCopy(listing.ownerEmail, 'Email copied!')}
@@ -176,7 +199,7 @@ function ItemDetails() {
                 <button
                   type="button"
                   onClick={handleDelete}
-                  className="mt-3 rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+                  className="mt-4 rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
                 >
                   Delete Listing
                 </button>
