@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import ItemCard from '../components/ItemCard';
-import LoadingSpinner from '../components/LoadingSpinner';
+import SkeletonCard from '../components/SkeletonCard';
 import { getAllListings } from '../services/listingService';
 
 const categories = ['All', 'Books', 'Electronics', 'Sports', 'Others'];
@@ -130,7 +130,11 @@ function Home() {
           </div>
 
           {loading ? (
-            <LoadingSpinner />
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <SkeletonCard key={index} />
+              ))}
+            </div>
           ) : listings.length === 0 ? (
             <div className="rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 px-8 py-14 text-center shadow-sm">
               <p className="text-lg font-semibold text-slate-900">No items available yet.</p>

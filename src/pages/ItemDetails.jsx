@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { useNavigate, useParams } from 'react-router-dom';
 import { auth, db } from '../firebase/firebase';
 import LoadingSpinner from '../components/LoadingSpinner';
+import ConfirmationModal from '../components/ConfirmationModal';
 import { getListingById } from '../services/listingService';
 
 function ItemDetails() {
@@ -11,6 +13,7 @@ function ItemDetails() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [copyMessage, setCopyMessage] = useState('');
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     async function loadListing() {
@@ -28,18 +31,14 @@ function ItemDetails() {
   }, [id]);
 
   const handleDelete = async () => {
-    const confirmed = window.confirm('Are you sure you want to delete this listing?');
-
-    if (!confirmed) {
-      return;
-    }
-
     try {
       await deleteDoc(doc(db, 'listings', id));
-      alert('Listing deleted successfully.');
+      toast.success('Listing deleted successfully.');
       navigate('/home');
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message || 'Failed to delete listing.');
+    } finally {
+      setIsDeleteModalOpen(false);
     }
   };
 
@@ -53,7 +52,7 @@ function ItemDetails() {
       setCopyMessage(successMessage);
       setTimeout(() => setCopyMessage(''), 1500);
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message || 'Unable to copy item details.');
     }
   };
 
@@ -198,7 +197,7 @@ function ItemDetails() {
               {auth.currentUser?.uid === listing.ownerId && (
                 <button
                   type="button"
-                  onClick={handleDelete}
+                  onClick={() => setIsDeleteModalOpen(true)}
                   className="mt-4 rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
                 >
                   Delete Listing
@@ -208,6 +207,14 @@ function ItemDetails() {
           </div>
         </div>
       </div>
+
+      <ConfirmationModal
+        isOpen={isDeleteModalOpen}
+        title="Delete Listing?"
+        message="This action cannot be undone."
+        onCancel={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 }
