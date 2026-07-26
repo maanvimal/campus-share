@@ -5,6 +5,8 @@ import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
 
 const categories = ['Books', 'Electronics', 'Sports', 'Others'];
+const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ubciv2ef/image/upload';
+const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
 function AddListing() {
   const navigate = useNavigate();
@@ -16,10 +18,40 @@ function AddListing() {
     contactNumber: '',
     imageUrl: '',
   });
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    const isValidFile = ACCEPTED_IMAGE_TYPES.includes(file.type) || ['.jpg', '.jpeg', '.png', '.webp'].some((extension) =>
+      file.name.toLowerCase().endsWith(extension)
+    );
+
+    if (!isValidFile) {
+      toast.error('Please choose a JPG, JPEG, PNG, or WEBP image.');
+      event.target.value = '';
+      return;
+    }
+
+    setSelectedFile(file);
+    setFormData((prev) => ({ ...prev, imageUrl: '' }));
+
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+
+    setPreviewUrl(URL.createObjectURL(file));
   };
 
   const handleSubmit = async (event) => {
@@ -27,12 +59,35 @@ function AddListing() {
 
     const { name, description, category, rentPerDay, contactNumber, imageUrl } = formData;
 
-    if (!name || !description || !category || !rentPerDay || !contactNumber || !imageUrl) {
+    if (!name || !description || !category || !rentPerDay || !contactNumber || (!imageUrl && !selectedFile)) {
       toast.error('Please fill in all fields.');
       return;
     }
 
     try {
+      setIsUploading(true);
+
+      let uploadedImageUrl = imageUrl;
+
+      if (selectedFile) {
+        const uploadData = new FormData();
+        uploadData.append('file', selectedFile);
+        uploadData.append('upload_preset', 'campus-share');
+
+        const response = await fetch(CLOUDINARY_URL, {
+          method: 'POST',
+          body: uploadData,
+        });
+
+        const uploadResult = await response.json();
+
+        if (!response.ok || !uploadResult.secure_url) {
+          throw new Error(uploadResult.error?.message || 'Image upload failed.');
+        }
+
+        uploadedImageUrl = uploadResult.secure_url;
+      }
+
       const currentUser = auth.currentUser;
 
       await addDoc(collection(db, 'listings'), {
@@ -41,7 +96,7 @@ function AddListing() {
         category,
         rentPerDay: Number(rentPerDay),
         contactNumber,
-        imageUrl,
+        imageUrl: uploadedImageUrl,
         ownerId: currentUser?.uid || '',
         ownerName: currentUser?.displayName || 'User',
         ownerEmail: currentUser?.email || '',
@@ -50,6 +105,8 @@ function AddListing() {
       navigate('/home');
     } catch (error) {
       toast.error(error.message || 'Failed to add listing.');
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -69,35 +126,32 @@ function AddListing() {
               <p className="mt-1 text-sm text-slate-600">Upload a clear photo of your item.</p>
             </div>
 
-            {formData.imageUrl ? (
-              <div className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white">
-                <img src={formData.imageUrl} alt="Preview" className="h-56 w-full object-cover sm:h-64" />
-              </div>
-            ) : (
-              <label className="flex cursor-pointer flex-col items-center justify-center rounded-[1.25rem] border border-dashed border-slate-300 bg-white px-6 py-10 text-center transition hover:border-blue-400 hover:bg-blue-50/40">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                  <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M12 16V4" />
-                    <path d="m8 8 4-4 4 4" />
-                    <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
-                  </svg>
-                </div>
-                <p className="mt-4 text-base font-semibold text-slate-800">Add a photo</p>
-                <p className="mt-1 text-sm text-slate-500">Upload a clear photo of your item.</p>
-              </label>
-            )}
-
-            <div className="mt-4">
-              <label className="mb-2 block text-sm font-medium text-slate-700">Image URL</label>
+            <label className="flex cursor-pointer flex-col items-center justify-center rounded-[1.25rem] border border-dashed border-slate-300 bg-white px-6 py-10 text-center transition hover:border-blue-400 hover:bg-blue-50/40">
               <input
-                type="text"
-                name="imageUrl"
-                value={formData.imageUrl}
-                onChange={handleChange}
-                className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-                placeholder="Paste an image URL"
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                onChange={handleImageChange}
+                className="sr-only"
               />
-            </div>
+
+              {previewUrl || formData.imageUrl ? (
+                <div className="w-full overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white">
+                  <img src={previewUrl || formData.imageUrl} alt="Preview" className="h-56 w-full object-cover sm:h-64" />
+                </div>
+              ) : (
+                <>
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                      <path d="M12 16V4" />
+                      <path d="m8 8 4-4 4 4" />
+                      <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+                    </svg>
+                  </div>
+                  <p className="mt-4 text-base font-semibold text-slate-800">Add a photo</p>
+                  <p className="mt-1 text-sm text-slate-500">Choose a JPG, JPEG, PNG, or WEBP image.</p>
+                </>
+              )}
+            </label>
           </section>
 
           <section className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
@@ -191,13 +245,32 @@ function AddListing() {
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-[1.25rem] bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-3.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.24)] transition hover:translate-y-[-1px] hover:shadow-[0_16px_36px_rgba(37,99,235,0.28)]"
+            disabled={isUploading}
+            className="flex w-full items-center justify-center gap-2 rounded-[1.25rem] bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-3.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.24)] transition hover:translate-y-[-1px] hover:shadow-[0_16px_36px_rgba(37,99,235,0.28)] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 5v14" />
-              <path d="m5 12 7 7 7-7" />
-            </svg>
-            Publish Listing
+            {isUploading ? (
+              <>
+                <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2v4" />
+                  <path d="M12 18v4" />
+                  <path d="M4.93 4.93l2.83 2.83" />
+                  <path d="M16.24 16.24l2.83 2.83" />
+                  <path d="M2 12h4" />
+                  <path d="M18 12h4" />
+                  <path d="M4.93 19.07l2.83-2.83" />
+                  <path d="M16.24 7.76l2.83-2.83" />
+                </svg>
+                Uploading...
+              </>
+            ) : (
+              <>
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 5v14" />
+                  <path d="m5 12 7 7 7-7" />
+                </svg>
+                Publish Listing
+              </>
+            )}
           </button>
 
           <div className="rounded-[1.25rem] border border-emerald-100 bg-emerald-50/70 p-4">
