@@ -1,65 +1,86 @@
-# 📚 Campus Share
+# Campus Share 🎓
 
-**Share. Borrow. Save.**
+A modern campus rental marketplace that enables students to list, discover, and rent items within their college community.
 
-A modern campus marketplace where students can securely rent and borrow items from one another. Built with React, Firebase, and Vite, Campus Share helps reduce costs and encourages resource sharing within a college community.
-
-🌐 **Live Demo:** https://campus-share-beta.vercel.app
+Built with **React**, **Firebase**, **Cloudinary**, and **Tailwind CSS**, Campus Share provides a simple and responsive platform for sharing resources among students.
 
 ---
 
-## 🚀 Features
+## 🌐 Live Demo
 
-- 🔐 Google Authentication using Firebase
-- 📦 Browse available listings
-- 🔍 Search items by name
-- 🏷️ Filter items by category
-- ➕ Add new listings
-- 📄 View detailed item information
-- 👤 My Listings page
-- 🗑️ Delete your own listings
-- 📱 Fully responsive design
-- ☁️ Cloud database using Firestore
+> Add your Vercel deployment link here
+
+Example:
+
+https://your-project.vercel.app
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-### Frontend
-- React (Vite)
-- JavaScript
-- Tailwind CSS
-- React Router DOM
-
-### Backend & Cloud
-- Firebase Authentication
-- Firebase Firestore
-- Firebase Storage
-
-### Deployment
-- Vercel
+- ✅ Google Authentication
+- ✅ Add Item Listings
+- ✅ Cloudinary Image Upload
+- ✅ Image Preview Before Upload
+- ✅ Browse Available Items
+- ✅ Search Listings
+- ✅ Category Filtering
+- ✅ My Listings Dashboard
+- ✅ Delete Listings
+- ✅ Confirmation Modal
+- ✅ Toast Notifications
+- ✅ Skeleton Loading
+- ✅ Responsive Design
 
 ---
 
-## 📸 Screenshots
+## 🛠 Tech Stack
 
-> Add screenshots here after capturing them.
+| Technology | Purpose |
+|------------|---------|
+| React (Vite) | Frontend |
+| Tailwind CSS | Styling |
+| Firebase Authentication | User Authentication |
+| Firestore | Database |
+| Cloudinary | Image Storage |
+| React Router | Routing |
+| React Hot Toast | Notifications |
+| Vercel | Deployment |
+
+---
+
+## 📷 Screenshots
+
+Add screenshots inside a folder named `screenshots`.
+
+```
+screenshots/
+├── login.png
+├── home.png
+├── add-listing.png
+├── my-listings.png
+└── item-details.png
+```
+
+Then display them here.
 
 ### Login
 
 ![Login](screenshots/login.png)
 
+---
+
 ### Home
 
 ![Home](screenshots/home.png)
 
-### Item Details
-
-![Item Details](screenshots/item-details.png)
+---
 
 ### Add Listing
 
 ![Add Listing](screenshots/add-listing.png)
+
+---
 
 ### My Listings
 
@@ -67,42 +88,9 @@ A modern campus marketplace where students can securely rent and borrow items fr
 
 ---
 
-## ⚙️ Installation
+### Item Details
 
-Clone the repository:
-
-```bash
-git clone https://github.com/maanvimal/campus-share.git
-```
-
-Go into the project:
-
-```bash
-cd campus-share
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Create a `.env` file in the project root:
-
-```env
-VITE_FIREBASE_API_KEY=YOUR_API_KEY
-VITE_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
-VITE_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
-VITE_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
-VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_SENDER_ID
-VITE_FIREBASE_APP_ID=YOUR_APP_ID
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
+![Item Details](screenshots/item-details.png)
 
 ---
 
@@ -110,49 +98,82 @@ npm run dev
 
 ```
 src/
+├── assets/
 ├── components/
-├── firebase/
 ├── pages/
 ├── services/
+├── firebase.js
 ├── App.jsx
 └── main.jsx
 ```
 
 ---
 
-## 🎯 Future Improvements
+## 🚀 Installation
 
-- In-app chat between students
-- Wishlist / Favorites
-- Booking requests
-- Availability calendar
-- User ratings & reviews
-- College email verification
-- Image optimization
-- Notifications
+Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run the development server
+
+```bash
+npm run dev
+```
+
+Build for production
+
+```bash
+npm run build
+```
 
 ---
 
-## 👥 Team
+## 💡 Future Improvements
 
-**Maan Vimal**  
-- Project Planning
-- Frontend Development
-- Firebase Integration
-- Deployment
+- In-app chat between students
+- Booking calendar
+- Wishlist
+- Ratings & Reviews
+- User profiles
+- Notifications
+- Admin Dashboard
+- Payment Integration
 
-**Mahima Prajapati**  
-- Team Member
-- Development & Testing
+---
+
+## 👥 Contributors
+
+- **Maan Vimal**
+- **Mahima Prajapati**
 
 ---
 
 ## 📜 License
 
-This project was developed for educational purposes as part of a college project.
+This project was developed for academic purposes as part of a college project.
 
 ---
 
-## ⭐ Support
+## ❤️ Built With
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+- React
+- Firebase
+- Firestore
+- Cloudinary
+- Tailwind CSS
+- Vite
+
+---
+
+## 📬 Contact
+
+For suggestions or improvements, feel free to reach out through GitHub.

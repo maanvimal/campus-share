@@ -1,5 +1,6 @@
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import { auth, googleProvider } from '../firebase/firebase';
 
 function Login() {
@@ -18,6 +19,11 @@ function Login() {
     <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-8">
       <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/70">
         <div className="text-center">
+          <img
+            src={logo}
+            alt="Campus Share logo"
+            className="mx-auto mb-6 h-20 w-20 object-contain sm:h-24 sm:w-24"
+          />
           <p className="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
             Campus Share
           </p>

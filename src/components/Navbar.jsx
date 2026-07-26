@@ -1,6 +1,7 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import { auth } from '../firebase/firebase';
 
 function Navbar() {
@@ -31,12 +32,12 @@ function Navbar() {
     <header className="sticky top-0 z-20 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 font-semibold text-white shadow-[0_10px_25px_rgba(37,99,235,0.25)]">
-            CS
+          <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-white p-1 shadow-[0_10px_25px_rgba(37,99,235,0.25)]">
+            <img src={logo} alt="Campus Share logo" className="h-full w-full object-contain" />
           </div>
           <div>
             <p className="text-lg font-semibold tracking-tight text-slate-900">Campus Share</p>
-            <p className="text-sm text-slate-500">Borrow smart</p>
+            <p className="text-sm text-slate-500">Borrow Smart</p>
           </div>
         </div>
 

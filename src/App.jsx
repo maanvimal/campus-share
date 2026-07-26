@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Home from './pages/Home';
@@ -10,7 +11,7 @@ import MyListings from './pages/MyListings';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[var(--color-bg)] text-slate-900 antialiased">
+      <div className="flex min-h-screen flex-col bg-[var(--color-bg)] text-slate-900 antialiased">
         <Toaster
           position="top-right"
           toastOptions={{
@@ -35,7 +36,7 @@ function App() {
             },
           }}
         />
-        <div className="mx-auto min-h-screen max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex-1 max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <Routes>
             <Route path="/" element={<Login />} />
             <Route
@@ -72,6 +73,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
