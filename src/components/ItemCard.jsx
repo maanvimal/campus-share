@@ -6,15 +6,16 @@ function ItemCard({ item }) {
   const [imageError, setImageError] = useState(false);
   const hasImage = Boolean(item?.imageUrl) && !imageError;
   const rentLabel = item?.rentPerDay ? `₹${item.rentPerDay}/day` : 'Contact';
+  const descriptionPreview = item?.description?.trim() || 'A useful item ready to borrow from your campus community.';
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-      <div className="h-40 w-full bg-gradient-to-br from-slate-100 to-slate-200">
+    <article className="card-surface flex h-full flex-col overflow-hidden">
+      <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-slate-100 via-white to-blue-50">
         {hasImage ? (
           <img
             src={item.imageUrl}
             alt={item?.name || 'Listing image'}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition duration-300 hover:scale-105"
             onError={() => setImageError(true)}
           />
         ) : (
@@ -24,25 +25,36 @@ function ItemCard({ item }) {
             </span>
           </div>
         )}
+        <div className="absolute left-3 top-3 rounded-full border border-emerald-200 bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-sm">
+          ● Available
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <h3 className="text-lg font-semibold text-slate-900">{item?.name}</h3>
-            <p className="mt-1 text-sm text-slate-500">{item?.category}</p>
+            <h3 className="text-lg font-semibold tracking-tight text-slate-900">{item?.name}</h3>
+            <div className="mt-2 inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
+              {item?.category}
+            </div>
           </div>
-          <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
-            {rentLabel}
-          </span>
+        </div>
+
+        <div className="mt-4 rounded-2xl border border-slate-100 bg-slate-50/80 p-3">
+          <p className="text-sm font-semibold text-blue-700">{rentLabel}</p>
+          <p className="mt-2 line-clamp-2 text-sm text-slate-600">{descriptionPreview}</p>
         </div>
 
         <button
           type="button"
           onClick={() => navigate(`/item/${item.id}`)}
-          className="mt-4 w-full rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700"
+          className="btn-primary mt-5 inline-flex w-full items-center justify-center gap-2"
         >
-          View Details
+          <span>View Details</span>
+          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M5 12h14" />
+            <path d="m13 6 6 6-6 6" />
+          </svg>
         </button>
       </div>
     </article>
